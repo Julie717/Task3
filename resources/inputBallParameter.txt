@@ -1,0 +1,5 @@
+green    5
+Blue     2
+yellow   1.5
+red      4.1
+blue     5.5
