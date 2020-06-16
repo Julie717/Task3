@@ -4,10 +4,6 @@ import com.buyalskaya.day3.exception.InputDataException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.testng.Assert.*;
 
 public class DataParserTest {
@@ -20,14 +16,11 @@ public class DataParserTest {
     }
 
     @Test
-    public void dataParserTestPositive() {
-        List<String> parameter = Arrays.asList(new String[]{"blue 1", "red 1.4", "yellow 5"});
+    public void parseOneLineTestPositive() {
+        String parameter = "blue 1 5";
         try {
-            List<List<String>> actual = dataParser.parseData(parameter);
-            List<List<String>> expected = new ArrayList<>();
-            expected.add(Arrays.asList(new String[]{"blue", "1"}));
-            expected.add(Arrays.asList(new String[]{"red", "1.4"}));
-            expected.add(Arrays.asList(new String[]{"yellow", "5"}));
+            String[] actual = dataParser.parseOneLine(parameter);
+            String[] expected = {"blue", "1", "5"};
             assertEquals(actual, expected);
         } catch (InputDataException ex) {
             fail(EXCEPTION_MESSAGE);
@@ -35,14 +28,20 @@ public class DataParserTest {
     }
 
     @Test
-    public void dataParserTestNegativeColor() {
-        List<String> parameter = Arrays.asList(new String[]{"blue 1", "greeen 1.4", "yellow 5"});
-        assertThrows(InputDataException.class, () -> dataParser.parseData(parameter));
+    public void parseOneLineTestNegativeColor() {
+        String parameter = "greeen 1.4 12.1";
+        assertThrows(InputDataException.class, () -> dataParser.parseOneLine(parameter));
     }
 
     @Test
-    public void dataParserTestNegativeWeight() {
-        List<String> parameter = Arrays.asList(new String[]{"blue 11.4.7", "green 1.4", "yellow 5"});
-        assertThrows(InputDataException.class, () -> dataParser.parseData(parameter));
+    public void parseOneLineTestNegativeWeight() {
+        String parameter = "green -1.4 12";
+        assertThrows(InputDataException.class, () -> dataParser.parseOneLine(parameter));
+    }
+
+    @Test
+    public void parseOneLineTestNegativeVolume() {
+        String parameter = "green 1.4 0";
+        assertThrows(InputDataException.class, () -> dataParser.parseOneLine(parameter));
     }
 }

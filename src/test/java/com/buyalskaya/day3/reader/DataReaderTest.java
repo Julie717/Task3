@@ -20,12 +20,12 @@ public class DataReaderTest {
     public void readDataTestPositive() {
         String filePath = "resources/inputBallParameter.txt";
         List<String> actual = dataReader.readData(filePath);
-        List<String> expected = Arrays.asList(new String[]{"green    5",
-                "Blue     2",
-                "yellow   1.5",
-                "red      4.1",
-                "blue     5.5"});
-        assertEquals(actual,expected);
+        List<String> expected = Arrays.asList(new String[]{"green    5     7.1",
+                "Blue     2     3",
+                "yellow   1.5   4.2",
+                "red      4.1   6.5",
+                "blue     5.5   7.3"});
+        assertEquals(actual, expected);
     }
 
     @Test

@@ -1,19 +1,19 @@
 package com.buyalskaya.day3.validator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class DataValidator {
-    public static final String REGEX_DELIMITER = "\\s+";
 
-    public boolean validateDataLine(String dataLine) {
-        ArrayList<String> data = new ArrayList<>(Arrays.asList(dataLine.split(REGEX_DELIMITER)));
+    public boolean validateDataLine(String[] parameter) {
+        String colorString = parameter[0];
+        String weightString = parameter[1];
+        String volumeString = parameter[2];
         boolean validate;
         BallValidator ballValidator = new BallValidator();
-        if (ballValidator.validateColor(data.get(0)) &&
-                validateIsDouble(data.get(1))) {
-            double weight = Double.parseDouble(data.get(1));
-            validate = ballValidator.validateWeight(weight);
+        if (ballValidator.validateColor(colorString) &&
+                validateIsDouble(weightString) &&
+                validateIsDouble(volumeString)) {
+            double weight = Double.parseDouble(parameter[1]);
+            double volume = Double.parseDouble(parameter[2]);
+            validate = ballValidator.validateWeight(weight) && ballValidator.validateVolume(volume);
         } else {
             validate = false;
         }

@@ -16,13 +16,13 @@ public class DataValidatorTest {
 
     @Test
     public void validateDataLineTestPositive() {
-        String line = "blue 4";
+        String[] line = {"blue", "4", "7"};
         assertTrue(dataValidator.validateDataLine(line));
     }
 
     @Test
     public void validateDataLineTestNegative() {
-        String line = "blue, 4";
+        String[] line = {"blue,", "4", "7"};
         assertFalse(dataValidator.validateDataLine(line));
     }
 

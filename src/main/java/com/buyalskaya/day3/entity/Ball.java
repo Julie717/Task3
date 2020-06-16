@@ -5,13 +5,15 @@ import java.util.StringJoiner;
 public class Ball {
     private Color color;
     private double weight;
+    private double volume;
 
     public Ball() {
     }
 
-    public Ball(Color color, double weight) {
+    public Ball(Color color, double weight, double volume) {
         this.color = color;
         this.weight = weight;
+        this.volume = volume;
     }
 
     public Color getColor() {
@@ -30,6 +32,14 @@ public class Ball {
         this.weight = weight;
     }
 
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -39,19 +49,20 @@ public class Ball {
             return false;
         }
         Ball ball = (Ball) obj;
-        return (ball.weight == weight) && (color.equals(ball.color));
+        return (color.equals(ball.color)) && (ball.weight == weight) && (volume == ball.volume);
     }
 
     @Override
     public int hashCode() {
-        return (int) (31 * weight + color.hashCode());
+        return (int) (31 * weight + color.hashCode() + volume);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", Ball.class.getSimpleName() + "[", "]")
-                .add("color='" + color + "'")
+                .add("color=" + color)
                 .add("weight=" + weight)
+                .add("volume=" + volume)
                 .toString();
     }
 }
