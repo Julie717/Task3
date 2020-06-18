@@ -92,8 +92,8 @@ public class Basket {
         return isCanPlaceInBasket;
     }
 
-    public void removeBall(Ball ball) {
-        balls.remove(ball);
+    public boolean removeBall(Ball ball) {
+        return balls.remove(ball);
     }
 
     public double weight() {
