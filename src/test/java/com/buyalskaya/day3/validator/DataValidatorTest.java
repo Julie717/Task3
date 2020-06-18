@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class DataValidatorTest {
-    DataValidator dataValidator = new DataValidator();
+    DataValidator dataValidator;
 
     @BeforeClass
     public void setUp() {
@@ -29,11 +29,14 @@ public class DataValidatorTest {
     @DataProvider(name = "dataForValidateIsDouble")
     public Object[][] dataForValidateIsDouble() {
         return new Object[][]{
-                {"15.5", true},
-                {"1E-5", true},
                 {"7", true},
-                {"point", false},
-                {"1.5.4", false},
+                {"1.5", true},
+                {"-1.5", true},
+                {"11.17", true},
+                {".5",false},
+                {"7.", false},
+                {"0.1.4", false},
+                {"--1.54", false},
                 {null, false}
         };
     }

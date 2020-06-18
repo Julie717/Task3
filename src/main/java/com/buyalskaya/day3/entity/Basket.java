@@ -51,7 +51,6 @@ public class Basket {
     }
 
     public List<Ball> getBalls() {
-
         return Collections.unmodifiableList(balls);
     }
 

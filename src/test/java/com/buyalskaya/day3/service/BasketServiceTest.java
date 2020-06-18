@@ -10,7 +10,8 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class BasketServiceTest {
-    BasketService basketService = new BasketService();
+    BasketService basketService;
+    Basket basket;
 
     @BeforeClass
     public void setUp() {
@@ -18,8 +19,8 @@ public class BasketServiceTest {
     }
 
     @BeforeMethod
-    public Basket createTestBasket() {
-        Basket basket = new Basket(20, 40);
+    public void createTestBasket() {
+        basket = new Basket(20, 40);
         Ball ball1 = new Ball(Color.GREEN, 2.0, 3.2);
         Ball ball2 = new Ball(Color.BLUE, 2.1, 4.1);
         Ball ball3 = new Ball(Color.RED, 7.4, 9);
@@ -30,29 +31,19 @@ public class BasketServiceTest {
         basket.addBall(ball3);
         basket.addBall(ball4);
         basket.addBall(ball5);
-        return basket;
     }
 
     @Test
-    public void amountOfBallsWithColorTest() {
-        Basket basket = createTestBasket();
-        int actual = basketService.amountOfBallsWithColor(basket, Color.BLUE);
+    public void calculateBallTest() {
+        int actual = basketService.calculateBall(basket, Color.BLUE);
         int expected = 3;
         assertEquals(actual, expected);
     }
 
     @Test
-    public void amountOfBallsWithColorTestBallNull() {
-        Basket basket = new Basket(20, 40);
-        int actual = basketService.amountOfBallsWithColor(basket, Color.BLUE);
-        int expected = 0;
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void amountOfBallsWithColorTestBasketNull() {
-        Basket basket = null;
-        int actual = basketService.amountOfBallsWithColor(basket, Color.BLUE);
+    public void calculateBallTestBasketNull() {
+        Basket basketNull = null;
+        int actual = basketService.calculateBall(basketNull, Color.BLUE);
         int expected = 0;
         assertEquals(actual, expected);
     }

@@ -10,11 +10,15 @@ public class BallValidator {
     public static final double BALL_MAX_VOLUME = 20.0;
 
     public boolean validateColor(String color) {
-        boolean validate = true;
-        try {
-            Color.valueOf(color.toUpperCase());
-        } catch (IllegalArgumentException ex) {
-            validate = false;
+        boolean validate = false;
+        if (color != null) {
+            String availableColorString;
+            for (Color availableColor : Color.values()) {
+                availableColorString = availableColor.toString();
+                if (availableColorString.equals(color.toUpperCase())) {
+                    validate = true;
+                }
+            }
         }
         return validate;
     }

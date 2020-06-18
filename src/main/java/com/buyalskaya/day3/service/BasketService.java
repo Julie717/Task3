@@ -5,7 +5,7 @@ import com.buyalskaya.day3.entity.Basket;
 import com.buyalskaya.day3.entity.Color;
 
 public class BasketService {
-    public int amountOfBallsWithColor(Basket basket, Color color) {
+    public int calculateBall(Basket basket, Color color) {
         int amountOfBalls = 0;
         if (basket != null) {
             for (Ball ball : basket.getBalls()) {

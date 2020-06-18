@@ -1,6 +1,9 @@
 package com.buyalskaya.day3.validator;
 
+import java.util.regex.Pattern;
+
 public class DataValidator {
+    private static final String CHECK_NUMBER = "-?(\\d+)(\\.\\d+)?";
 
     public boolean validateDataLine(String[] parameter) {
         String colorString = parameter[0];
@@ -24,13 +27,6 @@ public class DataValidator {
         if (number == null) {
             return false;
         }
-        boolean validate;
-        try {
-            Double.parseDouble(number);
-            validate = true;
-        } catch (NumberFormatException ex) {
-            validate = false;
-        }
-        return validate;
+        return Pattern.matches(CHECK_NUMBER, number);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class DataReaderTest {
-    DataReader dataReader = new DataReader();
+    DataReader dataReader;
 
     @BeforeClass
     public void setUp() {
@@ -20,11 +20,11 @@ public class DataReaderTest {
     public void readDataTestPositive() {
         String filePath = "resources/inputBallParameter.txt";
         List<String> actual = dataReader.readData(filePath);
-        List<String> expected = Arrays.asList(new String[]{"green    5     7.1",
+        List<String> expected = Arrays.asList("green    5     7.1",
                 "Blue     2     3",
                 "yellow   1.5   4.2",
                 "red      4.1   6.5",
-                "blue     5.5   7.3"});
+                "blue     5.5   7.3");
         assertEquals(actual, expected);
     }
 

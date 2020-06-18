@@ -1,6 +1,7 @@
 package com.buyalskaya.day3.validator;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -13,16 +14,24 @@ public class BallValidatorTest {
         ballValidator = new BallValidator();
     }
 
-    @Test
-    public void validateColorTestPositive() {
-        String color = "blue";
-        assertTrue(ballValidator.validateColor(color));
+    @DataProvider(name = "dataForValidateColor")
+    public Object[][] dataForValidateColor() {
+        return new Object[][]{
+                {"red", true},
+                {"Green", true},
+                {"BROWN", true},
+                {"YeLLow", true},
+                {"reed", false},
+                {null, false},
+                {"WHITEE", false},
+                {"Brown ", false},
+        };
     }
 
-    @Test
-    public void validateColorTestNegative() {
-        String color = "bluee";
-        assertFalse(ballValidator.validateColor(color));
+    @Test(dataProvider = "dataForValidateColor")
+    public void validateColorTestParams(String color, boolean expected) {
+        boolean actual = ballValidator.validateColor(color);
+        assertEquals(actual, expected);
     }
 
     @Test
