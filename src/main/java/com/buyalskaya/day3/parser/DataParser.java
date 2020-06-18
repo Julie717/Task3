@@ -7,13 +7,12 @@ import java.util.List;
 
 public class DataParser {
     public static final String REGEX_DELIMITER = "\\s+";
-    public static final String INCORRECT_PARAMETERS = "Parameters of balls are incorrect";
 
     public String[] parseOneLine(String data) throws InputDataException {
         String[] parseData = data.split(REGEX_DELIMITER);
         DataValidator dataValidator = new DataValidator();
         if (!dataValidator.validateDataLine(parseData)) {
-            throw new InputDataException(INCORRECT_PARAMETERS);
+            throw new InputDataException("Parameters of balls are incorrect");
         }
         return parseData;
     }
