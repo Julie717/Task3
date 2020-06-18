@@ -7,9 +7,11 @@ import com.buyalskaya.day3.entity.Color;
 public class BasketService {
     public int amountOfBallsWithColor(Basket basket, Color color) {
         int amountOfBalls = 0;
-        for (Ball ball : basket.getBalls()) {
-            if (ball.getColor() == color) {
-                amountOfBalls++;
+        if (basket != null) {
+            for (Ball ball : basket.getBalls()) {
+                if (ball.getColor() == color) {
+                    amountOfBalls++;
+                }
             }
         }
         return amountOfBalls;

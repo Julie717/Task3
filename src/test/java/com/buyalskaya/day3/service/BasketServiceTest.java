@@ -48,4 +48,12 @@ public class BasketServiceTest {
         int expected = 0;
         assertEquals(actual, expected);
     }
+
+    @Test
+    public void amountOfBallsWithColorTestBasketNull() {
+        Basket basket = null;
+        int actual = basketService.amountOfBallsWithColor(basket, Color.BLUE);
+        int expected = 0;
+        assertEquals(actual, expected);
+    }
 }
