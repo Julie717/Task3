@@ -70,18 +70,11 @@ public class Basket {
     }
 
     public boolean addBalls(List<Ball> balls) {
-        if (balls == null) {
+        if (balls == null || isBallNull(balls)) {
             return false;
         }
-        double ballsWeight = 0;
-        double ballsVolume = 0;
-        for (Ball ball : balls) {
-            if (ball == null) {
-                return false;
-            }
-            ballsWeight = ballsWeight + ball.getWeight();
-            ballsVolume = ballsVolume + ball.getVolume();
-        }
+        double ballsWeight = calculateWeight(balls);
+        double ballsVolume = calculateVolume(balls);
         double basketFreeWeight = weightCapacity - weight();
         double basketFreeVolume = volumeCapacity - volume();
         boolean isCanPlaceInBasket = (basketFreeWeight >= ballsWeight) && (basketFreeVolume >= ballsVolume);
@@ -96,14 +89,31 @@ public class Basket {
     }
 
     public double weight() {
-        double weightBalls = 0;
-        for (Ball ball : balls) {
-            weightBalls = weightBalls + ball.getWeight();
-        }
-        return weightBalls;
+        return calculateWeight(balls);
     }
 
     public double volume() {
+        return calculateVolume(balls);
+    }
+
+    private boolean isBallNull(List<Ball> balls) {
+        for (Ball ball : balls) {
+            if (ball == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private double calculateWeight(List<Ball> balls) {
+        double weight = 0;
+        for (Ball ball : balls) {
+            weight = weight + ball.getWeight();
+        }
+        return weight;
+    }
+
+    private double calculateVolume(List<Ball> balls) {
         double volume = 0;
         for (Ball ball : balls) {
             volume = volume + ball.getVolume();

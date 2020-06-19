@@ -33,7 +33,7 @@ public class BasketTest {
     }
 
     @BeforeMethod
-    public void createTestBalls() {
+    public void receiveTestListBall() {
         balls = new ArrayList<>();
         balls.add(new Ball(Color.ORANGE, 1.2, 1.4));
         balls.add(new Ball(Color.RED, 2.2, 6.4));
@@ -55,8 +55,8 @@ public class BasketTest {
     @Test
     public void addBallsTestNull() {
         Basket basket = new Basket(4.5, 3.8);
-        List<Ball> listBallsNull = null;
-        assertFalse(basket.addBalls(listBallsNull));
+        List<Ball> listBallNull = null;
+        assertFalse(basket.addBalls(listBallNull));
     }
 
     @Test
